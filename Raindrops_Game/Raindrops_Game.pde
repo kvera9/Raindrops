@@ -6,9 +6,12 @@ Catcher C = new Catcher();
 
 
 int index;
+PImage storm;
 
 void setup() {
+  storm = loadImage("Rainstorm background.png");
   C.display();
+  
   
   for (int i = 0; i < Drops.length; i++) {
     Drops[i] = new Raindrops();
@@ -16,7 +19,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(storm);
   for (int i = 0; i < index; i++) {
     Drops[i].display();
     Drops[i].drop();
