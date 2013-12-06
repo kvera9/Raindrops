@@ -9,11 +9,9 @@ int uw;
     uw = 20;
   }
   
-  void displa() {
+  void display() {
   imageMode(CENTER);
-  image(umb,mouseX,mouseY,uw,uh);
-  
-  
+  image(umb,mouseX,mouseY,uw,uh);  
   
   }
   
