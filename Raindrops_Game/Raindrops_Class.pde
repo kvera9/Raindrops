@@ -19,11 +19,6 @@ class Raindrops {
    imageMode(CENTER);
    image(raindrop, loc.x, loc.y, w, h);
   }
-  
-//  void display(){
-//    fill(100,200,255);
-//   ellipse(loc.x,loc.y,w,w); 
-//  }
 
   void drop() {
     loc.add(vel);
@@ -31,11 +26,13 @@ class Raindrops {
 
 
   void reset() {
-    if (loc.y > height) {
+    if (loc.y >= height) {
       loc.y = 0;
     }
   }
   
-  
+  void die() {
+    loc.y = height + 100;
+  }
 }
 
