@@ -8,8 +8,8 @@ class Raindrops {
 
 
   Raindrops () {
-    loc = new PVector(random(width), random(0,-100));
-    vel = new PVector(0, random(10));
+    loc = new PVector(random(width), -20);
+    vel = new PVector(0, 2);
     raindrop = loadImage("raindrop_edit.png");
     w = 20;
     h = 30;
@@ -31,7 +31,7 @@ class Raindrops {
 
 
   void reset() {
-    if (loc.y >=height) {
+    if (loc.y > height) {
       loc.y = 0;
     }
   }
