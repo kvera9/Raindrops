@@ -1,8 +1,13 @@
 class Catcher {
+  //umbrella image
   PImage umb;
+  //height of catcher
   int h;
+  //width of catcher
   int w;
+  //PVector to help with identifying distance 
   PVector mouse;
+  //score variable so that it will increase along the side
   int score;
 
 
@@ -36,6 +41,7 @@ class Catcher {
 
   //function so that the raindrops with disappear when they come in contact with the catcher
   void catchDrop(Raindrops r) {
+    //once the distance between the two objects is les than them solely touching, the score increases and the location of the raindrop changes
     if (mouse.dist(r.loc) < w/2 + r.w/2) {
       r.loc = new PVector(random(width), random(0, -100));
       score++;

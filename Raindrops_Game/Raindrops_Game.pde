@@ -31,12 +31,10 @@ void setup() {
 }
 
 void draw() {
-  //background made to be storm
-  background(storm);
-
-
   //controlling all of the display while the game runs
   if (run) {
+    //background made to be storm
+    background(storm);
     C.display();
     //text size for the score
     textSize(50);
@@ -84,7 +82,7 @@ void draw() {
 //when the key is pressed the 
 void mousePressed() {
   run = !run;
-  textMode(CENTER);
+  textAlign(CENTER);
   textSize(45);
   text("Paused", width/2, height/2);
 }

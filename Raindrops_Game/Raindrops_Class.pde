@@ -8,6 +8,7 @@ class Raindrops {
 
 
   Raindrops () {
+    //expressing the values of variables, and stating properties of pvectors
     loc = new PVector(random(width), -20);
     vel = new PVector(0, 2);
     raindrop = loadImage("raindrop_edit.png");
@@ -16,22 +17,26 @@ class Raindrops {
   }
 
   void display() {
+    //displaying a drop
    imageMode(CENTER);
    image(raindrop, loc.x, loc.y, w, h);
   }
 
   void drop() {
+    //velocity so that the raindorops drop
     loc.add(vel);
   }
 
 
   void reset() {
+    //resets the raindrops if they reach the height, so that they don't continue past the screen
     if (loc.y >= height) {
       loc.y = 0;
     }
   }
   
   void die() {
+    //offesets the raindrops to avoid increasing the score when the game is over
     loc.y = height + 100;
   }
 }
