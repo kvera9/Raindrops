@@ -15,10 +15,14 @@ boolean run;
 int life;
 //variable controlling the fill of Game Over text
 float x;
-
+//to restart the game
+boolean restart;
+boolean pause;
 void setup() {
-  //boolean starts as true
+  pause=false;
+  //booleans starts as true
   run = true;
+  restart = false;
   //storm background
   storm = loadImage("Rainstorm background.png");
   //change color mode so that the fill will be different colors
@@ -42,9 +46,11 @@ void draw() {
     for (int i = 0; i < index; i++) {
       //to display the raindrops
       Drops[i].display();
-      //to ensure the raindrops draw
-      Drops[i].drop();
-      //once the raindrops come in contact with the catcher they are seny back to reset
+      //to ensure the raindrops drop
+      if (!pause) {
+        Drops[i].drop();
+      }
+      //once the raindrops come in contact with the catcher they are sent back to reset
       C.catchDrop(Drops[i]);
       if (Drops[i].loc.y >= height) {
         life++;
@@ -64,6 +70,9 @@ void draw() {
         x+=0.25;
         //relocate the drops once it's game over to ensure the score doesn't increase after the game ends
         Drops[i].die();
+        if (mouseX > width/8*7 && mouseY > height/5*4) {
+          restart = false;
+        }
         if (x == 360) {
           x = 0;
         } 
@@ -71,19 +80,27 @@ void draw() {
         textSize(50);
         text(C.score, width/2, 2*height/3);
       }
+      if (restart) {
+        //code describing start screen
+        background(255);
+      }
     }
     //Timer Class properties 
     if (A.time() >= 1000 && index < Drops.length) {  
       index++;
       A.OldTime = millis();
     }
+//    if (pause) {
+//      textAlign(CENTER);
+//      textSize(45);
+//      text("Paused", width/2, height/2);
+//    }
   }
 }
-//when the key is pressed the 
+//when the key is pressed the game pauses
 void mousePressed() {
-  run = !run;
-  textAlign(CENTER);
-  textSize(45);
-  text("Paused", width/2, height/2);
+
+  run=!run;
+  pause = !pause;
 }
 
