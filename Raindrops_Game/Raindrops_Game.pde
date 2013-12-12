@@ -18,7 +18,7 @@ float x;
 
 void setup() {
   //boolean starts as true
-  run = true;
+  run = false;
   //storm background
   storm = loadImage("Rainstorm background.png");
   //change color mode so that the fill will be different colors
@@ -42,7 +42,7 @@ void draw() {
     for (int i = 0; i < index; i++) {
       //to display the raindrops
       Drops[i].display();
-      //to ensure the raindrops draw
+      //to ensure the raindrops drop
       Drops[i].drop();
       //once the raindrops come in contact with the catcher they are seny back to reset
       C.catchDrop(Drops[i]);
@@ -78,12 +78,21 @@ void draw() {
       A.OldTime = millis();
     }
   }
+  else {
+    background (255);
+    text("press any key to start", width/2, height/2);
+  }
 }
 //when the key is pressed the 
 void mousePressed() {
-  run = !run;
-  textAlign(CENTER);
-  textSize(45);
-  text("Paused", width/2, height/2);
+  if (life <= 5) {    
+    textAlign(CENTER);
+    textSize(45);
+    text("Paused", width/2, height/2);
+  }
+}
+
+void keyPressed() {
+  run = true;
 }
 
