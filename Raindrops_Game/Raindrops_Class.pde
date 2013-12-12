@@ -7,6 +7,7 @@ class Raindrops {
 
 
 
+
   Raindrops () {
     //expressing the values of variables, and stating properties of pvectors
     loc = new PVector(random(width), -20);
@@ -20,6 +21,7 @@ class Raindrops {
     //displaying a drop
    imageMode(CENTER);
    image(raindrop, loc.x, loc.y, w, h);
+   
   }
 
   void drop() {
