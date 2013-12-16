@@ -13,7 +13,7 @@ class Catcher {
 
 
   Catcher () {
-    //umb = loadImage("umbrella.png");
+//    umb = loadImage("black umbrella.png");
     h = 50;
     w = 50;
     mouse = new PVector(mouseX, mouseY);
