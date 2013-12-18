@@ -39,7 +39,8 @@ class Raindrops {
   
   void die() {
     //offesets the raindrops to avoid increasing the score when the game is over
-    loc.y = height + 100;
+    loc.set(width*2,0);
+    vel.set(0,0);
   }
 }
 

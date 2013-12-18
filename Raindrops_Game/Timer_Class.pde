@@ -10,11 +10,10 @@ class Timer {
   }
 
 
-  float time () {
-    //needed so that the timer doens't just recognize the if statement once
-  return millis() - OldTime;
-  
+  void time () {
+    if (millis()-OldTime > 1000) {
+      OldTime = millis();
+      index++;
+    }
   }
 }
-
-

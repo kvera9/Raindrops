@@ -11,8 +11,6 @@ int index = 1;
 PImage storm;
 //boolean to start and pause game
 boolean run;
-//variable that, once increased to a certain amount, causes you to lose the game
-int life = 1;
 //variable controlling the fill of Game Over text
 float x;
 //to pause the game
@@ -47,7 +45,8 @@ void draw() {
     background (255, 0, 0);
     textSize(30);
     textAlign(CENTER);
-    text("Press 'S' to START", width/2, height/3*2);
+    text("Press 'S' to START", width/2, height/3);
+    text("Click the Mouse to PAUSE", width/2, height/3*2);
   }
 
   //controlling all of the display while the game runs
@@ -71,20 +70,17 @@ void draw() {
       }//once the raindrops come in contact with the catcher they are sent back to reset
 
       if (Drops[i].loc.y >= height) {
-        life++;
         lives--;
       }
       //Reset, as stated before
       Drops[i].reset();
     }
     //Timer Class properties 
-    if (A.time() >= 1000 && index < Drops.length) {  
-      index++;
-      A.OldTime = millis();
-    }
+    A.time();
   }
+
   //this if statement describes that, once you lose a certain amount of lives, it's Game Over, adn the Game over end screen is displayed
-  if (life > 5) {
+  if (lives <= 0) {
     gameOver = true;
   }
 
@@ -96,8 +92,8 @@ void draw() {
   }
   //Black Background
   if (gameOver) {
-    run=false;
-    background(0);
+
+
     //Center text
     textAlign(CENTER);
     //Change text size for game over
@@ -116,14 +112,6 @@ void draw() {
     textSize(50);
     text(C.score, width/2, 2*height/3);
   }
-//  if (keyPressed && key == 'r') {
-//    lives = 4;
-//    index = 1;
-//    gameOver = false;
-//    for (int i = 0; i < Drops.length; i++) {
-//      Drops[i] = new Raindrops();
-//    }
-//  }
 }
 //when the key is pressed the 
 void mousePressed() {
@@ -134,9 +122,10 @@ void keyPressed() {
   if (key == 's') {
     run = true;
   }
-  if(key == 'r'){
-     lives = 4;
+  if (key == 'r') {
+    lives = 5;
     index = 1;
+    C.score = 0;
     gameOver = false;
     run=true;
     for (int i = 0; i < Drops.length; i++) {
