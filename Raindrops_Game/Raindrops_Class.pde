@@ -20,7 +20,7 @@ class Raindrops {
   void display() {
     //displaying a drop
    imageMode(CENTER);
-   image(raindrop, loc.x, loc.y, w, h);
+   image(raindrop, loc.x, loc.y);
    
   }
 

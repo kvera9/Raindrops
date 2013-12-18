@@ -12,7 +12,9 @@ PImage storm;
 //boolean to start and pause game
 boolean run;
 //variable controlling the fill of Game Over text
-float x;
+float x = 0;
+float y = 11;
+int yspeed = 3;
 //to pause the game
 boolean pause;
 //gameover
@@ -21,6 +23,7 @@ boolean gameOver;
 int lives = 5;
 //restart
 boolean restart;
+
 
 void setup() {
   //boolean starts as true
@@ -42,11 +45,26 @@ void setup() {
 void draw() {
 
   if (!run) {
-    background (255, 0, 0);
-    textSize(30);
+    //makes it so the background changes color
+    y+=yspeed;
+    //to color the background in RGB mode
+    colorMode(RGB, 255, 255, 255);
+    fill(0, 0, y);
+    background (0, 0, y);
+    textSize(45);
     textAlign(CENTER);
+    fill(255);
     text("Press 'S' to START", width/2, height/3);
     text("Click the Mouse to PAUSE", width/2, height/3*2);
+    text("Press 'R' to RESTART", width/2, height/2); 
+    if (y < 10) {
+      yspeed = -yspeed;
+    }
+    if (y >255) {
+      yspeed = -yspeed;
+    }
+    //resets color mode to HSb for the ellipse later on and for the game over screen
+    colorMode(HSB, 360, 100, 100);
   }
 
   //controlling all of the display while the game runs
@@ -92,22 +110,24 @@ void draw() {
   }
   //Black Background
   if (gameOver) {
-
-
+    background(0);
     //Center text
     textAlign(CENTER);
     //Change text size for game over
     textSize(100);
     fill(x, 100, 100);
-    text("GameOver", width/2, height/2); 
-    x+=0.25;
+    text("GameOver", width/2, height/2);
+    textSize(25);
+    text("Wanna play again? Press 'R'!", width/2, height/4*3); 
+    x+=0.75;
+
+    if (x == 360) {
+      x = 0;
+    } 
     //relocate the drops once it's game over to ensure the score doesn't increase after the game ends
     for (int i = 0; i < Drops.length; i++) {
       Drops[i].die();
     }
-    if (x == 360) {
-      x = 0;
-    } 
     //The score is displayed to show the gamer their final score once the Game is over
     textSize(50);
     text(C.score, width/2, 2*height/3);
