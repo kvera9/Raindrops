@@ -42,6 +42,14 @@ void setup() {
 }
 
 void draw() {
+
+  if (!run) {
+    background (255, 0, 0);
+    textSize(30);
+    textAlign(CENTER);
+    text("Press 'S' to START", width/2, height/3*2);
+  }
+
   //controlling all of the display while the game runs
   if (run) {
     //background made to be storm
@@ -69,60 +77,53 @@ void draw() {
       //Reset, as stated before
       Drops[i].reset();
     }
-    //this if statement describes that, once you lose a certain amount of lives, it's Game Over, adn the Game over end screen is displayed
-    if (life > 5) {
-      gameOver = true;
-    }
-    //Black Background
-    if (gameOver) {
-      background(0);
-      //Center text
-      textAlign(CENTER);
-      //Change text size for game over
-      textSize(100);
-      fill(x, 100, 100);
-      text("GameOver", width/2, height/2); 
-      x+=0.25;
-      //relocate the drops once it's game over to ensure the score doesn't increase after the game ends
-      for (int i = 0; i < Drops.length; i++) {
-        Drops[i].die();
-      }
-      if (x == 360) {
-        x = 0;
-      } 
-      //The score is displayed to show the gamer their final score once the Game is over
-      textSize(50);
-      text(C.score, width/2, 2*height/3);
-    }
-    if (keyPressed && key == 'r') {
-      lives = 4;
-      index = 1;
-      gameOver = false;
-      for (int i = 0; i < Drops.length; i++) {
-        Drops[i] = new Raindrops();
-      }
-    }
-
-
-
     //Timer Class properties 
     if (A.time() >= 1000 && index < Drops.length) {  
       index++;
       A.OldTime = millis();
     }
   }
-  else {
-    background (255, 0, 0);
-    textSize(30);
-    textAlign(CENTER);
-    text("Press 'S' to START", width/2, height/3*2);
+  //this if statement describes that, once you lose a certain amount of lives, it's Game Over, adn the Game over end screen is displayed
+  if (life > 5) {
+    gameOver = true;
   }
+
 
   if (pause && run) {    
     textAlign(CENTER);
     textSize(45);
     text("Paused", width/2, height/2);
   }
+  //Black Background
+  if (gameOver) {
+    run=false;
+    background(0);
+    //Center text
+    textAlign(CENTER);
+    //Change text size for game over
+    textSize(100);
+    fill(x, 100, 100);
+    text("GameOver", width/2, height/2); 
+    x+=0.25;
+    //relocate the drops once it's game over to ensure the score doesn't increase after the game ends
+    for (int i = 0; i < Drops.length; i++) {
+      Drops[i].die();
+    }
+    if (x == 360) {
+      x = 0;
+    } 
+    //The score is displayed to show the gamer their final score once the Game is over
+    textSize(50);
+    text(C.score, width/2, 2*height/3);
+  }
+//  if (keyPressed && key == 'r') {
+//    lives = 4;
+//    index = 1;
+//    gameOver = false;
+//    for (int i = 0; i < Drops.length; i++) {
+//      Drops[i] = new Raindrops();
+//    }
+//  }
 }
 //when the key is pressed the 
 void mousePressed() {
@@ -132,6 +133,15 @@ void mousePressed() {
 void keyPressed() {
   if (key == 's') {
     run = true;
+  }
+  if(key == 'r'){
+     lives = 4;
+    index = 1;
+    gameOver = false;
+    run=true;
+    for (int i = 0; i < Drops.length; i++) {
+      Drops[i] = new Raindrops();
+    }
   }
 }
 
