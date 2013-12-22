@@ -7,15 +7,16 @@ class Catcher {
   int w;
   //PVector to help with identifying distance 
   PVector mouse;
-  //score variable so that it will increase along the side
+  //score variable so that the score will increase
   int score;
 
 
 
   Catcher () {
-    //umb = loadImage("umbrella.png");
+//    umb = loadImage("black umbrella.png");
     h = 50;
     w = 50;
+    //catcher is controlled bythe mouse
     mouse = new PVector(mouseX, mouseY);
   }
 
@@ -30,7 +31,7 @@ class Catcher {
   }
  */
 
-//catcher displayed as an ellipse because umbrella image was faced with technical difficulties
+//catcher displayed as an ellipse because umbrella image was faced with technical difficulties (not a single catcher would work!!!)
   void display() {
     fill(230,100,100);
     mouse.set(mouseX, mouseY);
@@ -41,7 +42,7 @@ class Catcher {
 
   //function so that the raindrops with disappear when they come in contact with the catcher
   void catchDrop(Raindrops r) {
-    //once the distance between the two objects is les than them solely touching, the score increases and the location of the raindrop changes
+    //once the distance between the two objects is less than them solely touching, the score increases and the location of the raindrop changes
     if (mouse.dist(r.loc) < w/2 + r.w/2) {
       r.loc = new PVector(random(width), random(0, -100));
       score++;
