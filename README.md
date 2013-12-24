@@ -19,3 +19,9 @@ Raindrops
 
 *You only have 5 lives, so be careful not to let more than 5 raindrops hit the bottom of the screen or it's game over!!!*
 
+
+
+
+Note to Ms. Gerstein:
+I was still unable to upload a single picture as my Catcher. No matter what umbrella, or bucket, etc I uploaded processing would refuse to run the game and kept insisting there were errors and that the picture was unavailble. I published a complaint/bug/glitches in Github, but I simpl wanted to remind you considering it cold affect my grade. Thank You.
+
